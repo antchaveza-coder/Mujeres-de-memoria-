@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mujeres de memoria | Cementerio General</title>
-<style>
-* { box-sizing: border-box; }
+<title>Mujeres de memoria</title>
 
+<style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -18,10 +17,8 @@ header {
   background: #593d48;
   color: white;
   text-align: center;
-  padding: 55px 20px;
+  padding: 40px 15px;
 }
-
-header h1 { font-size: 38px; }
 
 nav {
   background: #765563;
@@ -33,64 +30,36 @@ nav a {
   color: white;
   text-decoration: none;
   margin: 10px;
-  display: inline-block;
 }
 
-section { padding: 35px 8%; }
-
-h2 { color: #704b5a; }
-
-#recorrido { text-align: center; }
-
-
-<img src="https://raw.githubusercontent.com/antchaveza-coder/Mujeres-de-memoria-/main/Mapa%20cementerio.png" alt="Mapa del recorrido">
-  
-.controles {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px;
+section {
+  padding: 30px 8%;
 }
 
-button {
-  background: #704b5a;
-  color: white;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+h2 {
+  color: #704b5a;
 }
 
-.marcador {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #a83245;
-  color: white;
-  border: 2px solid white;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0;
-  box-shadow: 0 2px 8px #555;
+.mapa {
+  width: 100%;
+  text-align: center;
 }
 
-#informacion {
-  background: white;
-  padding: 20px;
-  margin-top: 18px;
+.mapa img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  margin: auto;
   border-radius: 12px;
-  text-align: left;
-  min-height: 100px;
+  border: 2px solid #765563;
 }
 
 .card {
   background: white;
-  padding: 22px;
+  padding: 20px;
   margin: 15px 0;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #ddd;
+  border-radius: 10px;
 }
 
 footer {
@@ -98,11 +67,6 @@ footer {
   color: white;
   text-align: center;
   padding: 20px;
-}
-
-@media(max-width:600px) {
-  .mapa-contenedor { height: 450px; }
-  header h1 { font-size: 30px; }
 }
 </style>
 </head>
@@ -132,14 +96,50 @@ de mujeres que forman parte de nuestra historia.
 </section>
 
 <section id="recorrido">
-<h2>Mapa interactivo del recorrido</h2>
-<p>Acércate, desplaza el mapa y selecciona los puntos para conocer cada historia.</p>
+<h2>Mapa del recorrido</h2>
+<p>Explora el mapa del Cementerio General.</p>
 
-<div class="controles">
-<button onclick="zoom(0.2)">＋</button>
-<button onclick="zoom(-0.2)">－</button>
-<button onclick="reiniciar()">Restablecer mapa</button>
+<div class="mapa">
+<img
+src="https://raw.githubusercontent.com/antchaveza-coder/Mujeres-de-memoria-/main/Mapa%20cementerio.png"
+alt="Mapa original del recorrido Mujeres de memoria">
 </div>
+</section>
 
-<div class="mapa-contenedor" id="visor">
-<div id="mapa-movible">
+<section id="historias">
+<h2>Historias del recorrido</h2>
+
+<div class="card"><h3>Isidora Zegers</h3><p>Patio 3</p></div>
+<div class="card"><h3>Eloísa Díaz</h3><p>Patio 12</p></div>
+<div class="card"><h3>Marcela Paz</h3><p>Patio 56</p></div>
+<div class="card"><h3>Rebeca Matte</h3><p>Patio 68</p></div>
+<div class="card"><h3>Carmela Carvajal de Prat</h3><p>Patio 60</p></div>
+<div class="card"><h3>Irene Morales</h3><p>Patio 27</p></div>
+<div class="card"><h3>Paula Jaraquemada</h3><p>Patio 7</p></div>
+<div class="card"><h3>Veteranos de la Guerra del 79</h3><p>Patio 9</p></div>
+<div class="card">
+<h3>Monumento a las víctimas del incendio de la Iglesia de la Compañía</h3>
+<p>Plaza de La Paz</p>
+</div>
+</section>
+
+<section id="visita">
+<h2>Recomendaciones para visitantes</h2>
+<div class="card">
+<ul>
+<li>Respetar los espacios y monumentos.</li>
+<li>Mantener un ambiente de tranquilidad.</li>
+<li>Cuidar la limpieza del lugar.</li>
+<li>Respetar a otros visitantes.</li>
+<li>Seguir las indicaciones del cementerio.</li>
+</ul>
+</div>
+</section>
+
+<footer>
+<p>Mujeres de memoria | Cementerio General de Santiago</p>
+<p>Un recorrido por la historia y la memoria.</p>
+</footer>
+
+</body>
+</html>
