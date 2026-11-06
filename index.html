@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mujeres de memoria</title>
+<title>Mujeres de memoria | Cementerio General</title>
 
 <style>
 * { box-sizing: border-box; }
@@ -34,6 +34,7 @@ nav a {
   color: white;
   text-decoration: none;
   margin: 10px;
+  display: inline-block;
 }
 
 section { padding: 35px 8%; }
@@ -45,11 +46,11 @@ h2 { color: #704b5a; }
 .mapa-contenedor {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 600px;
   overflow: hidden;
-  background: #e8e1dc;
+  background: #eee9e5;
   border: 2px solid #765563;
-  border-radius: 14px;
+  border-radius: 12px;
   touch-action: none;
 }
 
@@ -60,8 +61,6 @@ h2 { color: #704b5a; }
   transform-origin: 0 0;
   cursor: grab;
 }
-
-#mapa-movible:active { cursor: grabbing; }
 
 #mapa-movible img {
   width: 100%;
@@ -90,26 +89,23 @@ button {
 .marcador {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #a83245;
   color: white;
   border: 2px solid white;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 8px #555;
   padding: 0;
+  box-shadow: 0 2px 8px #555;
 }
-
-.marcador:hover { background: #593d48; }
 
 #informacion {
   background: white;
   padding: 20px;
   margin-top: 18px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px #ddd;
   text-align: left;
   min-height: 100px;
 }
@@ -130,7 +126,7 @@ footer {
 }
 
 @media(max-width:600px) {
-  .mapa-contenedor { height: 420px; }
+  .mapa-contenedor { height: 450px; }
   header h1 { font-size: 30px; }
 }
 </style>
@@ -161,142 +157,14 @@ de mujeres que forman parte de nuestra historia.
 </section>
 
 <section id="recorrido">
-<h2>Mapa del recorrido</h2>
-<p>Explora el mapa, acércate y selecciona los puntos para conocer cada historia.</p>
+<h2>Mapa interactivo del recorrido</h2>
+<p>Acércate, desplaza el mapa y selecciona los puntos para conocer cada historia.</p>
 
 <div class="controles">
-<button onclick="acercar()">+</button>
-<button onclick="alejar()">−</button>
-<button onclick="reiniciar()">Restablecer</button>
+<button onclick="zoom(0.2)">＋</button>
+<button onclick="zoom(-0.2)">－</button>
+<button onclick="reiniciar()">Restablecer mapa</button>
 </div>
 
 <div class="mapa-contenedor" id="visor">
-  <div id="mapa-movible">
-    <img
-      src="https://raw.githubusercontent.com/antchaveza-coder/Mujeres-de-memoria-/main/Mapa%20cementerio.png"
-      alt="Mapa del Cementerio General"
-    >
-
-    <button class="marcador" style="left:20%;top:25%" onclick="mostrar(0)">1</button>
-    <button class="marcador" style="left:35%;top:35%" onclick="mostrar(1)">2</button>
-    <button class="marcador" style="left:50%;top:20%" onclick="mostrar(2)">3</button>
-    <button class="marcador" style="left:65%;top:40%" onclick="mostrar(3)">4</button>
-    <button class="marcador" style="left:75%;top:55%" onclick="mostrar(4)">5</button>
-    <button class="marcador" style="left:40%;top:65%" onclick="mostrar(5)">6</button>
-    <button class="marcador" style="left:25%;top:75%" onclick="mostrar(6)">7</button>
-    <button class="marcador" style="left:60%;top:75%" onclick="mostrar(7)">8</button>
-    <button class="marcador" style="left:85%;top:25%" onclick="mostrar(8)">9</button>
-  </div>
-</div>
-
-<div id="informacion">
-<h3>Selecciona un punto del mapa</h3>
-<p>Aquí aparecerá la información de cada lugar.</p>
-</div>
-</section>
-
-<section id="historias">
-<h2>Las nueve historias de nuestro recorrido</h2>
-
-<div class="card"><h3>1. Isidora Zegers</h3><p>Patio 3</p></div>
-<div class="card"><h3>2. Eloísa Díaz</h3><p>Patio 12</p></div>
-<div class="card"><h3>3. Marcela Paz</h3><p>Patio 56</p></div>
-<div class="card"><h3>4. Rebeca Matte</h3><p>Patio 68</p></div>
-<div class="card"><h3>5. Carmela Carvajal de Prat</h3><p>Patio 60</p></div>
-<div class="card"><h3>6. Irene Morales</h3><p>Patio 27</p></div>
-<div class="card"><h3>7. Paula Jaraquemada</h3><p>Patio 7</p></div>
-<div class="card"><h3>8. Veteranos de la Guerra del 79</h3><p>Patio 9</p></div>
-<div class="card"><h3>9. Monumento a las víctimas del incendio de la Iglesia de la Compañía</h3><p>Plaza de La Paz</p></div>
-</section>
-
-<section id="visita">
-<h2>Recomendaciones para visitantes</h2>
-<div class="card">
-<ul>
-<li>Respetar los espacios y monumentos.</li>
-<li>Mantener un ambiente de tranquilidad.</li>
-<li>Cuidar la limpieza del lugar.</li>
-<li>Respetar a otros visitantes.</li>
-<li>Seguir las indicaciones del cementerio.</li>
-</ul>
-</div>
-</section>
-
-<footer>
-<p>Mujeres de memoria | Cementerio General de Santiago</p>
-<p>Un recorrido por la historia y la memoria.</p>
-</footer>
-
-<script>
-const visor = document.getElementById("visor");
-const mapa = document.getElementById("mapa-movible");
-
-let escala = 1;
-let x = 0;
-let y = 0;
-let arrastrando = false;
-let inicioX = 0;
-let inicioY = 0;
-
-function actualizar() {
-  mapa.style.transform =
-    translate(${x}px, ${y}px) scale(${escala});
-}
-
-function acercar() {
-  escala = Math.min(escala + 0.2, 3);
-  actualizar();
-}
-
-function alejar() {
-  escala = Math.max(escala - 0.2, 1);
-  actualizar();
-}
-
-function reiniciar() {
-  escala = 1;
-  x = 0;
-  y = 0;
-  actualizar();
-}
-
-visor.addEventListener("pointerdown", e => {
-  if (e.target.closest(".marcador")) return;
-  arrastrando = true;
-  inicioX = e.clientX - x;
-  inicioY = e.clientY - y;
-  visor.setPointerCapture(e.pointerId);
-});
-
-visor.addEventListener("pointermove", e => {
-  if (!arrastrando) return;
-  x = e.clientX - inicioX;
-  y = e.clientY - inicioY;
-  actualizar();
-});
-
-visor.addEventListener("pointerup", () => {
-  arrastrando = false;
-});
-
-const historias = [
-  ["Isidora Zegers", "Patio 3"],
-  ["Eloísa Díaz", "Patio 12"],
-  ["Marcela Paz", "Patio 56"],
-  ["Rebeca Matte", "Patio 68"],
-  ["Carmela Carvajal de Prat", "Patio 60"],
-  ["Irene Morales", "Patio 27"],
-  ["Paula Jaraquemada", "Patio 7"],
-  ["Veteranos de la Guerra del 79", "Patio 9"],
-  ["Monumento a las víctimas del incendio de la Iglesia de la Compañía", "Plaza de La Paz"]
-];
-
-function mostrar(numero) {
-  const historia = historias[numero];
-  document.getElementById("informacion").innerHTML =
-    <h3>${historia[0]}</h3><p>${historia[1]}</p><p>Próximamente podrás escuchar su historia en audio.</p>;
-}
-</script>
-
-</body>
-</html>
+<div id="mapa-movible">
