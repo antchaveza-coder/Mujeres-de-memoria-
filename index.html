@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mujeres de memoria</title>
+<title>Mujeres de Memoria</title>
 
 <style>
 body {
@@ -31,11 +31,6 @@ nav a {
   color: white;
   text-decoration: none;
   margin: 10px;
-  display: inline-block;
-}
-
-nav a:hover {
-  text-decoration: underline;
 }
 
 section {
@@ -44,6 +39,35 @@ section {
 
 h2 {
   color: #704b5a;
+}
+
+.boton-comenzar {
+  background: #704b5a;
+  color: white;
+  border: none;
+  padding: 16px 30px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.boton-comenzar:hover {
+  background: #593d48;
+}
+
+.bienvenida-audio {
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.bienvenida-audio audio {
+  width: 100%;
+  max-width: 450px;
 }
 
 .mapa {
@@ -69,16 +93,14 @@ h2 {
   display: flex;
   align-items: center;
   gap: 20px;
-  box-sizing: border-box;
 }
 
 .card img {
-  width: 180px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 10px;
   border: 2px solid #765563;
-  flex-shrink: 0;
 }
 
 .card-info {
@@ -93,13 +115,27 @@ h2 {
 .audio-relato {
   background: white;
   padding: 15px 20px;
-  margin: 15px 0;
+  margin: -5px 0 15px;
   border-radius: 10px;
 }
 
 .audio-relato audio {
   width: 100%;
   max-width: 400px;
+}
+
+.audio-relato.bloqueado {
+  background: #e9e3e5;
+  text-align: center;
+}
+
+.audio-relato.bloqueado audio {
+  display: none;
+}
+
+.estado-audio {
+  color: #704b5a;
+  font-weight: bold;
 }
 
 footer {
@@ -117,8 +153,9 @@ footer {
 
   .card img {
     width: 100%;
-    height: 230px;
-    object-fit: cover;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
   }
 }
 </style>
@@ -127,7 +164,7 @@ footer {
 <body>
 
 <header>
-  <h1>Mujeres de memoria</h1>
+  <h1>Mujeres de Memoria</h1>
   <h2 style="color:white">Voces del Cementerio General</h2>
   <p>Un recorrido autoguiado para conocer y recordar historias de mujeres.</p>
 </header>
@@ -146,6 +183,28 @@ footer {
     de Santiago, descubriendo las historias, aportes y memorias
     de mujeres que forman parte de nuestra historia.
   </p>
+
+  <div style="text-align:center">
+    <button class="boton-comenzar" id="botonComenzar">
+      ▶ COMENZAR RECORRIDO
+    </button>
+  </div>
+
+  <div class="bienvenida-audio" id="bienvenidaAudio" hidden>
+    <h3>🎧 Bienvenida y recomendaciones</h3>
+    <p>Antes de comenzar, escucha las recomendaciones para realizar el recorrido.</p>
+
+    <audio id="audioBienvenida" controls preload="metadata">
+      <source
+        src="./WhatsApp%20Audio%202026-11-23%20at%2013.00.30.mp4"
+        type="audio/mp4">
+      Tu navegador no admite la reproducción de audio.
+    </audio>
+
+    <p id="mensajeBienvenida">
+      Cuando termine este audio, se desbloqueará el primer hito.
+    </p>
+  </div>
 </section>
 
 <section id="recorrido">
@@ -155,125 +214,183 @@ footer {
   <div class="mapa">
     <img
       src="https://raw.githubusercontent.com/antchaveza-coder/Mujeres-de-memoria-/main/Mapa%20cementerio.png"
-      alt="Mapa original del recorrido Mujeres de memoria">
+      alt="Mapa original del recorrido Mujeres de Memoria">
   </div>
 </section>
 
-<section id="historias">
+<section id="historias" hidden>
   <h2>Historias del recorrido</h2>
+  <p>Escucha cada historia para desbloquear el siguiente punto.</p>
 
-  <!-- 1. Carmela Carvajal de Prat -->
+  <!-- 1. CARMELA CARVAJAL -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04.jpeg"
-      alt="Carmela Carvajal de Prat">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04.jpeg"
+         alt="Fotografía de Carmela Carvajal de Prat">
     <div class="card-info">
-      <h3>Carmela Carvajal de Prat</h3>
+      <h3>1. Carmela Carvajal de Prat</h3>
       <p>Patio 60</p>
     </div>
   </div>
 
-  <!-- 2. Rebeca Matte -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 2. REBECA MATTE -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(1).jpeg"
-      alt="Rebeca Matte">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(1).jpeg"
+         alt="Fotografía de Rebeca Matte">
     <div class="card-info">
-      <h3>Rebeca Matte</h3>
+      <h3>2. Rebeca Matte</h3>
       <p>Patio 68</p>
     </div>
   </div>
 
-  <!-- 3. Marcela Paz -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 3. MARCELA PAZ -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(2).jpeg"
-      alt="Marcela Paz">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(2).jpeg"
+         alt="Fotografía de Marcela Paz">
     <div class="card-info">
-      <h3>Marcela Paz</h3>
+      <h3>3. Marcela Paz</h3>
       <p>Patio 56</p>
     </div>
   </div>
 
-  <!-- 4. Irene Morales -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 4. IRENE MORALES -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(3).jpeg"
-      alt="Irene Morales">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(3).jpeg"
+         alt="Fotografía de Irene Morales">
     <div class="card-info">
-      <h3>Irene Morales</h3>
+      <h3>4. Irene Morales</h3>
       <p>Patio 27</p>
     </div>
   </div>
 
-  <!-- 5. Eloísa Díaz -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 5. ELOÍSA DÍAZ -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05.jpeg"
-      alt="Eloísa Díaz">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05.jpeg"
+         alt="Fotografía de Eloísa Díaz">
     <div class="card-info">
-      <h3>Eloísa Díaz</h3>
+      <h3>5. Eloísa Díaz</h3>
       <p>Patio 12</p>
     </div>
   </div>
 
-  <!-- 6. Veteranos de la Guerra del 79 -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 6. VETERANOS DE LA GUERRA DEL 79 -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(1).jpeg"
-      alt="Veteranos de la Guerra del 79">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(1).jpeg"
+         alt="Veteranos de la Guerra del 79">
     <div class="card-info">
-      <h3>Veteranos de la Guerra del 79</h3>
+      <h3>6. Veteranos de la Guerra del 79</h3>
       <p>Patio 9</p>
     </div>
   </div>
 
-  <!-- 7. Isidora Zegers -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 7. ISIDORA ZEGERS -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(2).jpeg"
-      alt="Isidora Zegers">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(2).jpeg"
+         alt="Fotografía de Isidora Zegers">
     <div class="card-info">
-      <h3>Isidora Zegers</h3>
+      <h3>7. Isidora Zegers</h3>
       <p>Patio 3</p>
     </div>
   </div>
 
-  <div class="audio-relato">
-    <p>🎧 Escucha la historia de Isidora Zegers</p>
-    <audio controls>
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
-      Tu navegador no admite la reproducción de audio.
     </audio>
   </div>
 
-  <!-- 8. Paula Jaraquemada -->
+  <!-- 8. PAULA JARAQUEMADA -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(3).jpeg"
-      alt="Paula Jaraquemada">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(3).jpeg"
+         alt="Fotografía de Paula Jaraquemada">
     <div class="card-info">
-      <h3>Paula Jaraquemada</h3>
+      <h3>8. Paula Jaraquemada</h3>
       <p>Patio 7</p>
     </div>
   </div>
 
-  <!-- 9. Monumento de la Plaza de La Paz -->
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <!-- 9. MONUMENTO PLAZA DE LA PAZ -->
+
   <div class="card">
-    <img
-      src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(4).jpeg"
-      alt="Monumento de la Plaza de La Paz">
+    <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(4).jpeg"
+         alt="Monumento de la Plaza de La Paz">
     <div class="card-info">
-      <h3>Monumento de la Plaza de La Paz</h3>
+      <h3>9. Monumento de la Plaza de La Paz</h3>
       <p>Plaza de La Paz</p>
     </div>
   </div>
 
+  <div class="audio-relato bloqueado">
+    <p class="estado-audio">🔒 Audio bloqueado</p>
+    <audio class="audio-hito" controls preload="none">
+      <source src="./Isidora%20zegers" type="audio/mp4">
+    </audio>
+  </div>
+
+  <p id="mensajeFinal" hidden>
+    ❤️ ¡Felicitaciones! Has completado el recorrido Mujeres de Memoria.
+  </p>
 </section>
 
 <section id="visita">
   <h2>Recomendaciones para visitantes</h2>
-
   <div class="card">
     <ul>
       <li>Respetar los espacios y monumentos.</li>
@@ -286,9 +403,84 @@ footer {
 </section>
 
 <footer>
-  <p>Mujeres de memoria | Cementerio General de Santiago</p>
+  <p>Mujeres de Memoria | Cementerio General de Santiago</p>
   <p>Un recorrido por la historia y la memoria.</p>
 </footer>
+
+<script>
+const botonComenzar = document.getElementById("botonComenzar");
+const bienvenidaAudio = document.getElementById("bienvenidaAudio");
+const audioBienvenida = document.getElementById("audioBienvenida");
+const historias = document.getElementById("historias");
+const mensajeBienvenida = document.getElementById("mensajeBienvenida");
+
+const bloques = Array.from(
+  document.querySelectorAll(".audio-relato")
+);
+
+const audios = Array.from(
+  document.querySelectorAll(".audio-hito")
+);
+
+function desbloquearHito(indice) {
+  const bloque = bloques[indice];
+
+  if (!bloque) return;
+
+  bloque.classList.remove("bloqueado");
+
+  const mensaje = bloque.querySelector(".estado-audio");
+  const audio = audios[indice];
+
+  mensaje.textContent = "🎧 Escucha la historia";
+  audio.controls = true;
+  audio.preload = "metadata";
+
+  bloque.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+botonComenzar.addEventListener("click", async () => {
+  botonComenzar.hidden = true;
+  bienvenidaAudio.hidden = false;
+
+  try {
+    await audioBienvenida.play();
+  } catch (error) {
+    mensajeBienvenida.textContent =
+      "Presiona reproducir para escuchar la bienvenida.";
+  }
+});
+
+// Solo al terminar completamente la bienvenida
+// se desbloquea el primer hito.
+audioBienvenida.addEventListener("ended", () => {
+  historias.hidden = false;
+  mensajeBienvenida.textContent =
+    "¡Bienvenida escuchada! Ya puedes comenzar el recorrido.";
+
+  desbloquearHito(0);
+});
+
+// Cada audio terminado desbloquea el siguiente.
+audios.forEach((audio, indice) => {
+  audio.addEventListener("ended", () => {
+    const siguiente = indice + 1;
+
+    if (siguiente < audios.length) {
+      desbloquearHito(siguiente);
+    } else {
+      document.getElementById("mensajeFinal").hidden = false;
+      document.getElementById("mensajeFinal").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+  });
+});
+</script>
 
 </body>
 </html>
