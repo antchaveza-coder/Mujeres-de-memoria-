@@ -1,285 +1,167 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mujeres de Memoria | Voces del Cementerio General</title>
+<title>Mujeres de Memoria</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f5f1ed;
-  color: #44353a;
+  color: #333;
 }
 
-/* ENCABEZADO */
 header {
-  background: #f8f5eb;
-  color: #593d48;
-  min-height: 115px;
-  padding: 18px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 10;
-}
-
-.logo {
-  text-align: center;
-  flex: 1;
-}
-
-.logo h1 {
-  font-family: Georgia, serif;
-  font-size: 34px;
-  margin: 0;
-  color: #593d48;
-}
-
-.logo p {
-  font-size: 13px;
-  letter-spacing: 4px;
-  margin: 8px 0 0;
-  color: #765563;
-}
-
-.menu-btn {
-  background: transparent;
-  border: none;
-  color: #593d48;
-  font-size: 32px;
-  cursor: pointer;
-  padding: 5px 12px;
-}
-
-.idioma {
-  border: 1px solid #d8c9c5;
-  background: transparent;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 20px;
-}
-
-/* MENÚ DESPLEGABLE */
-nav {
-  display: none;
-  background: #263f29;
-  padding: 15px 5%;
-  position: absolute;
-  top: 115px;
-  left: 0;
-  width: 100%;
-  z-index: 20;
-}
-
-nav.abierto {
-  display: block;
-}
-
-nav a {
-  display: block;
+  background: #593d48;
   color: white;
-  text-decoration: none;
-  padding: 20px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+  padding: 40px 15px;
+}
+
+/* Menú superior */
+.barra-menu {
+  height: 58px;
+  background: #f5f1ed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 28px;
+  position: relative;
+  z-index: 100;
+}
+
+.boton-menu {
+  background: transparent;
+  border: 0;
+  color: #593d48;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 7px 10px;
+}
+
+.menu-desplegable {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 22px;
+  width: 245px;
+  background: #fff;
+  border: 1px solid #e2d7dc;
+  border-radius: 9px;
+  box-shadow: 0 8px 22px rgba(45, 25, 35, .16);
+  overflow: hidden;
+}
+
+.menu-desplegable.abierto {
+  display: block;
+}
+
+.menu-desplegable button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 15px 18px;
+  border: 0;
+  border-bottom: 1px solid #eee7ea;
+  background: white;
+  color: #593d48;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.menu-desplegable button:last-child {
+  border-bottom: 0;
+}
+
+.menu-desplegable button:hover {
+  background: #f5eef1;
+}
+
+section {
+  padding: 30px 8%;
+}
+
+h2 {
+  color: #704b5a;
+}
+
+.boton-comenzar {
+  background: #704b5a;
+  color: white;
+  border: none;
+  padding: 16px 30px;
+  border-radius: 10px;
   font-size: 17px;
   font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
 }
 
-nav a:hover {
-  color: #d2b65b;
-}
-
-nav a:last-child {
-  border-bottom: none;
-}
-
-/* IMAGEN PRINCIPAL */
-.portada {
-  height: 520px;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  background:
-    linear-gradient(to bottom, transparent 45%, rgba(35,20,25,0.45)),
-    url("./cementerio-general.jpg") center 45% / cover no-repeat,
-    #765563;
-}
-
-.portada-contenido {
-  text-align: center;
-  color: white;
-  padding: 35px 20px;
-  width: 100%;
-}
-
-.portada-contenido h2 {
-  font-family: Georgia, serif;
-  color: white;
-  font-size: 43px;
-  line-height: 1.15;
-  margin: 0 auto 15px;
-  max-width: 850px;
-}
-
-.portada-contenido p {
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-/* SECCIÓN INICIO */
-#inicio {
-  padding: 45px 7% 55px;
+.boton-comenzar:hover {
   background: #593d48;
-  color: #fff8ed;
+}
+
+.seleccion-inicio {
   text-align: center;
+  margin: 25px auto 10px;
+  max-width: 760px;
 }
 
-#inicio h2 {
-  color: #fff8ed;
-  font-family: Georgia, serif;
-  font-size: 45px;
-  font-weight: normal;
-  margin: 0 auto 28px;
-  letter-spacing: 3px;
+.seleccion-inicio h3 {
+  color: #704b5a;
+  letter-spacing: 5px;
+  font-size: 24px;
+  margin-bottom: 22px;
 }
 
-#inicio h3 {
-  color: #fff8ed;
-  font-family: Georgia, serif;
-  font-size: 28px;
-  font-weight: normal;
-  margin: 0 0 12px;
-}
-
-.texto-inicio {
-  max-width: 700px;
-  margin: 0 auto 30px;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #f4e9e6;
-}
-
-/* OPCIONES DE RECORRIDO */
 .botones-origen {
-  max-width: 750px;
-  margin: 30px auto 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  gap: 12px;
 }
 
 .boton-origen {
-  width: 100%;
-  min-height: 75px;
   background: transparent;
-  color: #fff8ed;
-  border: 1px solid #e7d6cc;
-  border-radius: 35px;
-  padding: 15px 25px;
-  font-size: 16px;
+  color: #704b5a;
+  border: 0;
+  border-bottom: 1px solid #704b5a;
+  padding: 14px 12px;
+  width: min(100%, 520px);
+  font-size: 17px;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   cursor: pointer;
-  transition: 0.25s;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
+  transition: background 0.2s, color 0.2s;
 }
 
 .boton-origen:hover,
 .boton-origen.seleccionado {
-  background: #f0d18a;
-  border-color: #f0d18a;
-  color: #49352d;
+  background: #704b5a;
+  color: white;
 }
 
-.icono-origen {
-  font-size: 24px;
-}
-
-.flecha {
-  font-size: 25px;
+.boton-origen:disabled {
+  opacity: 0.65;
+  cursor: default;
 }
 
 #mensajeOrigen {
-  color: #f5dfc5;
-  min-height: 22px;
-  margin: 20px auto;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* BOTÓN COMENZAR */
-.boton-comenzar {
-  display: inline-block;
-  background: #d4b45a;
-  color: #44351f;
-  border: none;
-  border-radius: 35px;
-  padding: 18px 40px;
-  font-size: 16px;
+  color: #704b5a;
   font-weight: bold;
-  letter-spacing: 2px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.25s;
+  min-height: 22px;
+  margin-top: 16px;
 }
 
-.boton-comenzar:hover {
-  background: #ead18b;
-  transform: translateY(-2px);
-}
-
-/* FRASE INFERIOR */
-.frase-portada {
-  text-align: center;
-  padding: 45px 20px;
-  background: #f8f5eb;
-  color: #593d48;
-}
-
-.frase-portada h2 {
-  font-family: Georgia, serif;
-  font-size: 30px;
-  font-style: italic;
-  font-weight: normal;
-  margin: 0 0 15px;
-}
-
-.frase-portada p {
-  line-height: 1.6;
-}
-
-/* AUDIO DE BIENVENIDA */
 .bienvenida-audio {
-  max-width: 700px;
-  background: #fff;
-  color: #593d48;
-  padding: 25px;
-  margin: 25px auto 0;
-  border-radius: 10px;
-}
-
-.bienvenida-audio h3 {
-  color: #593d48 !important;
-  font-family: Arial, sans-serif !important;
-  font-size: 21px !important;
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  text-align: center;
 }
 
 .bienvenida-audio audio {
@@ -287,27 +169,6 @@ nav a:last-child {
   max-width: 450px;
 }
 
-#mensajeBienvenida {
-  color: #765563;
-  font-size: 14px;
-}
-
-/* SECCIONES GENERALES */
-section.contenido {
-  padding: 40px 8%;
-}
-
-section.contenido h2 {
-  color: #704b5a;
-  font-family: Georgia, serif;
-  font-size: 30px;
-}
-
-section.contenido > p {
-  line-height: 1.7;
-}
-
-/* MAPA */
 .mapa {
   width: 100%;
   text-align: center;
@@ -323,7 +184,6 @@ section.contenido > p {
   border: 2px solid #765563;
 }
 
-/* HISTORIAS */
 .card {
   background: white;
   padding: 20px;
@@ -377,98 +237,14 @@ section.contenido > p {
   font-weight: bold;
 }
 
-/* RECOMENDACIONES */
-.recomendaciones {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  line-height: 2;
-}
-
-/* PIE DE PÁGINA */
 footer {
   background: #593d48;
   color: white;
   text-align: center;
-  padding: 25px 15px;
-  line-height: 1.7;
+  padding: 20px;
 }
 
-/* ADAPTACIÓN A CELULARES */
-@media (max-width: 650px) {
-  header {
-    min-height: 95px;
-    padding: 15px 10px;
-  }
-
-  .logo h1 {
-    font-size: 23px;
-  }
-
-  .logo p {
-    font-size: 9px;
-    letter-spacing: 2px;
-  }
-
-  .menu-btn {
-    font-size: 27px;
-    padding: 4px;
-  }
-
-  .idioma {
-    font-size: 15px;
-    padding: 7px;
-  }
-
-  nav {
-    top: 95px;
-  }
-
-  .portada {
-    height: 490px;
-  }
-
-  .portada-contenido h2 {
-    font-size: 32px;
-  }
-
-  .portada-contenido p {
-    font-size: 15px;
-  }
-
-  #inicio {
-    padding: 35px 18px 40px;
-  }
-
-  #inicio h2 {
-    font-size: 36px;
-  }
-
-  #inicio h3 {
-    font-size: 24px;
-  }
-
-  .boton-origen {
-    font-size: 12px;
-    letter-spacing: 1px;
-    padding: 13px 16px;
-    min-height: 68px;
-  }
-
-  .boton-comenzar {
-    width: 90%;
-    padding: 17px 15px;
-    font-size: 13px;
-  }
-
-  .frase-portada h2 {
-    font-size: 24px;
-  }
-
-  section.contenido {
-    padding: 30px 18px;
-  }
-
+@media (max-width: 600px) {
   .card {
     flex-direction: column;
     align-items: flex-start;
@@ -486,79 +262,66 @@ footer {
 
 <body>
 
-<!-- ENCABEZADO -->
-<header>
-  <button class="menu-btn" id="menuBtn" aria-label="Abrir menú"
-          aria-expanded="false">☰</button>
+<!-- MENÚ DESPLEGABLE -->
+<div class="barra-menu">
+  <button class="boton-menu" id="botonMenu" type="button"
+          aria-label="Abrir menú" aria-expanded="false"
+          aria-controls="menuDesplegable">☰</button>
 
-  <div class="logo">
-    <h1>Mujeres de Memoria</h1>
-    <p>VOCES DEL CEMENTERIO GENERAL</p>
-  </div>
-
-  <div class="idioma" aria-label="Idioma español">🇨🇱⌄</div>
-</header>
-
-<!-- MENÚ -->
-<nav id="menu">
-  <a href="#inicio">Inicio</a>
-  <a href="#recorrido">Recorrido</a>
-  <a href="#historias">Historias</a>
-  <a href="#visita">Recomendaciones</a>
-</nav>
-
-<!-- PORTADA CON FOTOGRAFÍA -->
-<div class="portada">
-  <div class="portada-contenido">
-    <h2>Mujeres que forman parte de nuestra historia</h2>
-    <p>Un recorrido autoguiado para conocer y recordar sus historias.</p>
+  <div class="menu-desplegable" id="menuDesplegable">
+    <button type="button" id="menuInicio">Inicio</button>
+    <button type="button" id="menuMetro">Desde Metro Cementerios</button>
+    <button type="button" id="menuAvLaPaz">Desde Av. La Paz</button>
   </div>
 </div>
 
-<!-- INICIO DEBAJO DE LA FOTOGRAFÍA -->
+<!-- TÍTULO -->
+<header>
+  <h1>Mujeres de Memoria</h1>
+  <h2 style="color:white">Voces del Cementerio General</h2>
+  <p>Un recorrido autoguiado para conocer y recordar historias de mujeres.</p>
+</header>
+
+<!-- INICIO -->
 <section id="inicio">
+  <h2>Bienvenidos</h2>
 
-  <h2>INICIO</h2>
-
-  <h3>¿Dónde quieres comenzar?</h3>
-
-  <p class="texto-inicio">
-    Elige tu punto de partida para descubrir las historias,
-    aportes y memorias de mujeres que forman parte de nuestra historia.
+  <p>
+    Te invitamos a realizar un recorrido por el Cementerio General
+    de Santiago, descubriendo las historias, aportes y memorias
+    de mujeres que forman parte de nuestra historia.
   </p>
 
-  <div class="botones-origen">
+  <div class="seleccion-inicio">
+    <h3>INICIO</h3>
 
-    <button class="boton-origen" id="desdeMetro" type="button">
-      <span class="icono-origen">📍</span>
-      <span>DESDE METRO CEMENTERIOS</span>
-      <span class="flecha">›</span>
-    </button>
+    <div class="botones-origen">
+      <button class="boton-origen" id="desdeMetro" type="button">
+        DESDE METRO CEMENTERIOS
+      </button>
 
-    <button class="boton-origen" id="desdeAvLaPaz" type="button">
-      <span class="icono-origen">📍</span>
-      <span>DESDE AV. LA PAZ</span>
-      <span class="flecha">›</span>
-    </button>
+      <button class="boton-origen" id="desdeAvLaPaz" type="button">
+        DESDE AV. LA PAZ
+      </button>
+    </div>
 
+    <p id="mensajeOrigen" aria-live="polite">
+      Selecciona dónde comenzarás tu recorrido.
+    </p>
   </div>
 
-  <p id="mensajeOrigen" aria-live="polite">
-    Selecciona dónde comenzarás tu recorrido.
-  </p>
-
-  <button class="boton-comenzar" id="botonComenzar" hidden>
-    COMENZAR RECORRIDO →
-  </button>
+  <div style="text-align:center">
+    <button class="boton-comenzar" id="botonComenzar" hidden>
+      ▶ COMENZAR RECORRIDO
+    </button>
+  </div>
 
   <!-- AUDIO DE BIENVENIDA -->
   <div class="bienvenida-audio" id="bienvenidaAudio" hidden>
-
     <h3>🎧 Bienvenida y recomendaciones</h3>
 
     <p>
-      Antes de comenzar, escucha las recomendaciones
-      para realizar el recorrido.
+      Antes de comenzar, escucha las recomendaciones para realizar el recorrido.
     </p>
 
     <audio id="audioBienvenida" controls preload="metadata">
@@ -571,45 +334,31 @@ footer {
     <p id="mensajeBienvenida">
       Cuando termine este audio, se desbloqueará el primer hito.
     </p>
-
   </div>
-
 </section>
 
-<!-- FRASE -->
-<div class="frase-portada">
-  <h2>Mujeres que dejaron huella en la historia</h2>
-  <p>
-    Un recorrido para conocer sus historias y mantener viva su memoria.
-  </p>
-</div>
-
 <!-- MAPA -->
-<section id="recorrido" class="contenido">
-
+<section id="recorrido">
   <h2>Mapa del recorrido</h2>
-
   <p>Explora el mapa del Cementerio General.</p>
 
   <div class="mapa">
     <img
       src="https://raw.githubusercontent.com/antchaveza-coder/Mujeres-de-memoria-/main/Mapa%20cementerio.png"
-      alt="Mapa del recorrido Mujeres de Memoria">
+      alt="Mapa original del recorrido Mujeres de Memoria">
   </div>
-
 </section>
 
 <!-- HISTORIAS -->
-<section id="historias" class="contenido" hidden>
-
+<section id="historias" hidden>
   <h2>Historias del recorrido</h2>
-
   <p>Escucha cada historia para desbloquear el siguiente punto.</p>
 
   <!-- 1. CARMELA CARVAJAL -->
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04.jpeg"
          alt="Fotografía de Carmela Carvajal de Prat">
+
     <div class="card-info">
       <h3>1. Carmela Carvajal de Prat</h3>
       <p>Patio 60</p>
@@ -627,6 +376,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(1).jpeg"
          alt="Fotografía de Rebeca Matte">
+
     <div class="card-info">
       <h3>2. Rebeca Matte</h3>
       <p>Patio 68</p>
@@ -644,6 +394,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(2).jpeg"
          alt="Fotografía de Marcela Paz">
+
     <div class="card-info">
       <h3>3. Marcela Paz</h3>
       <p>Patio 56</p>
@@ -661,6 +412,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(3).jpeg"
          alt="Fotografía de Irene Morales">
+
     <div class="card-info">
       <h3>4. Irene Morales</h3>
       <p>Patio 27</p>
@@ -678,6 +430,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05.jpeg"
          alt="Fotografía de Eloísa Díaz">
+
     <div class="card-info">
       <h3>5. Eloísa Díaz</h3>
       <p>Patio 12</p>
@@ -695,6 +448,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(1).jpeg"
          alt="Veteranos de la Guerra del 79">
+
     <div class="card-info">
       <h3>6. Veteranos de la Guerra del 79</h3>
       <p>Patio 9</p>
@@ -712,6 +466,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(2).jpeg"
          alt="Fotografía de Isidora Zegers">
+
     <div class="card-info">
       <h3>7. Isidora Zegers</h3>
       <p>Patio 3</p>
@@ -729,6 +484,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(3).jpeg"
          alt="Fotografía de Paula Jaraquemada">
+
     <div class="card-info">
       <h3>8. Paula Jaraquemada</h3>
       <p>Patio 7</p>
@@ -746,6 +502,7 @@ footer {
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(4).jpeg"
          alt="Monumento de la Plaza de La Paz">
+
     <div class="card-info">
       <h3>9. Monumento de la Plaza de La Paz</h3>
       <p>Plaza de La Paz</p>
@@ -762,15 +519,13 @@ footer {
   <p id="mensajeFinal" hidden>
     ❤️ ¡Felicitaciones! Has completado el recorrido Mujeres de Memoria.
   </p>
-
 </section>
 
 <!-- RECOMENDACIONES -->
-<section id="visita" class="contenido">
-
+<section id="visita">
   <h2>Recomendaciones para visitantes</h2>
 
-  <div class="recomendaciones">
+  <div class="card">
     <ul>
       <li>Respetar los espacios y monumentos.</li>
       <li>Mantener un ambiente de tranquilidad.</li>
@@ -779,7 +534,6 @@ footer {
       <li>Seguir las indicaciones del cementerio.</li>
     </ul>
   </div>
-
 </section>
 
 <!-- PIE DE PÁGINA -->
@@ -789,23 +543,6 @@ footer {
 </footer>
 
 <script>
-// MENÚ DESPLEGABLE
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
-
-menuBtn.addEventListener("click", () => {
-  const abierto = menu.classList.toggle("abierto");
-  menuBtn.setAttribute("aria-expanded", abierto);
-});
-
-menu.querySelectorAll("a").forEach(enlace => {
-  enlace.addEventListener("click", () => {
-    menu.classList.remove("abierto");
-    menuBtn.setAttribute("aria-expanded", "false");
-  });
-});
-
-// ELEMENTOS DEL RECORRIDO
 const botonComenzar = document.getElementById("botonComenzar");
 const bienvenidaAudio = document.getElementById("bienvenidaAudio");
 const audioBienvenida = document.getElementById("audioBienvenida");
@@ -816,6 +553,66 @@ const botonDesdeMetro = document.getElementById("desdeMetro");
 const botonDesdeAvLaPaz = document.getElementById("desdeAvLaPaz");
 const mensajeOrigen = document.getElementById("mensajeOrigen");
 
+// MENÚ DESPLEGABLE
+const botonMenu = document.getElementById("botonMenu");
+const menuDesplegable = document.getElementById("menuDesplegable");
+
+function cerrarMenu() {
+  menuDesplegable.classList.remove("abierto");
+  botonMenu.setAttribute("aria-expanded", "false");
+}
+
+botonMenu.addEventListener("click", (evento) => {
+  evento.stopPropagation();
+
+  const abierto = menuDesplegable.classList.toggle("abierto");
+
+  botonMenu.setAttribute("aria-expanded", String(abierto));
+});
+
+document.addEventListener("click", (evento) => {
+  if (
+    !menuDesplegable.contains(evento.target) &&
+    evento.target !== botonMenu
+  ) {
+    cerrarMenu();
+  }
+});
+
+document.addEventListener("keydown", (evento) => {
+  if (evento.key === "Escape") {
+    cerrarMenu();
+  }
+});
+
+// OPCIONES DEL MENÚ
+document.getElementById("menuInicio").addEventListener("click", () => {
+  cerrarMenu();
+
+  document.getElementById("inicio").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+document.getElementById("menuMetro").addEventListener("click", () => {
+  seleccionarOrigen("metro");
+  cerrarMenu();
+
+  document.getElementById("inicio").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+document.getElementById("menuAvLaPaz").addEventListener("click", () => {
+  seleccionarOrigen("av-la-paz");
+  cerrarMenu();
+
+  document.getElementById("inicio").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+// TARJETAS Y AUDIOS ORIGINALES
 const tarjetasOriginales = Array.from(
   historias.querySelectorAll(":scope > .card")
 );
@@ -832,9 +629,8 @@ let bloques = [];
 let audios = [];
 let indiceHitoActual = 0;
 
-// ORGANIZAR LOS HITOS SEGÚN EL PUNTO DE PARTIDA
+// ORGANIZAR HITOS SEGÚN EL PUNTO DE PARTIDA
 function organizarHitos(direccion) {
-
   const indices = tarjetasOriginales.map((_, indice) => indice);
 
   if (direccion === "av-la-paz") {
@@ -844,7 +640,6 @@ function organizarHitos(direccion) {
   const fragmento = document.createDocumentFragment();
 
   indices.forEach((indiceOriginal, posicion) => {
-
     const tarjeta = tarjetasOriginales[indiceOriginal];
     const bloqueAudio = bloquesOriginales[indiceOriginal];
     const titulo = tarjeta.querySelector("h3");
@@ -857,10 +652,9 @@ function organizarHitos(direccion) {
     titulo.textContent =
       `${posicion + 1}. ${titulo.dataset.tituloOriginal}`;
 
-    // Mover la historia junto con su propio audio.
+    // La tarjeta se mueve junto a su propio audio.
     fragmento.appendChild(tarjeta);
     fragmento.appendChild(bloqueAudio);
-
   });
 
   historias.insertBefore(fragmento, mensajeFinal);
@@ -876,7 +670,6 @@ function organizarHitos(direccion) {
 
 // SELECCIONAR PUNTO DE PARTIDA
 function seleccionarOrigen(direccion) {
-
   if (recorridoIniciado) return;
 
   direccionSeleccionada = direccion;
@@ -908,9 +701,8 @@ botonDesdeAvLaPaz.addEventListener("click", () => {
   seleccionarOrigen("av-la-paz");
 });
 
-// DESBLOQUEAR EL HITO CORRESPONDIENTE
+// DESBLOQUEAR EL AUDIO DEL HITO CORRESPONDIENTE
 function desbloquearHito(indice) {
-
   const bloque = bloques[indice];
 
   if (!bloque) return;
@@ -939,7 +731,6 @@ function desbloquearHito(indice) {
 
 // COMENZAR RECORRIDO
 botonComenzar.addEventListener("click", async () => {
-
   if (!direccionSeleccionada || recorridoIniciado) return;
 
   recorridoIniciado = true;
@@ -951,39 +742,29 @@ botonComenzar.addEventListener("click", async () => {
 
   bienvenidaAudio.hidden = false;
 
-  bienvenidaAudio.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-
   try {
     await audioBienvenida.play();
   } catch (error) {
     mensajeBienvenida.textContent =
       "Presiona reproducir para escuchar la bienvenida.";
   }
-
 });
 
-// AL TERMINAR LA BIENVENIDA SE DESBLOQUEA EL PRIMER HITO
+// CUANDO TERMINA LA BIENVENIDA SE DESBLOQUEA EL PRIMER HITO
 audioBienvenida.addEventListener("ended", () => {
-
   historias.hidden = false;
 
   mensajeBienvenida.textContent =
     "¡Bienvenida escuchada! Ya puedes comenzar el recorrido.";
 
   desbloquearHito(0);
-
 });
 
-// DESBLOQUEO PROGRESIVO DE LOS AUDIOS
+// CUANDO TERMINA CADA AUDIO SE DESBLOQUEA EL SIGUIENTE
 bloquesOriginales.forEach((bloque) => {
-
   const audio = bloque.querySelector(".audio-hito");
 
   audio.addEventListener("ended", () => {
-
     const indice = audios.indexOf(audio);
 
     if (indice !== indiceHitoActual) return;
@@ -991,11 +772,8 @@ bloquesOriginales.forEach((bloque) => {
     const siguiente = indice + 1;
 
     if (siguiente < audios.length) {
-
       desbloquearHito(siguiente);
-
     } else {
-
       mensajeFinal.hidden = false;
 
       mensajeFinal.textContent =
@@ -1005,11 +783,8 @@ bloquesOriginales.forEach((bloque) => {
         behavior: "smooth",
         block: "center"
       });
-
     }
-
   });
-
 });
 </script>
 
