@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mujeres de Memoria</title>
-
 <style>
 body {
   margin: 0;
@@ -13,34 +11,28 @@ body {
   background: #f5f1ed;
   color: #333;
 }
-
 header {
   background: #593d48;
   color: white;
   text-align: center;
   padding: 40px 15px;
 }
-
 nav {
   background: #765563;
   padding: 15px;
   text-align: center;
 }
-
 nav a {
   color: white;
   text-decoration: none;
   margin: 10px;
 }
-
 section {
   padding: 30px 8%;
 }
-
 h2 {
   color: #704b5a;
 }
-
 .boton-comenzar {
   background: #704b5a;
   color: white;
@@ -52,31 +44,26 @@ h2 {
   cursor: pointer;
   margin-top: 15px;
 }
-
 .boton-comenzar:hover {
   background: #593d48;
 }
-
 .seleccion-inicio {
   text-align: center;
   margin: 25px auto 10px;
   max-width: 760px;
 }
-
 .seleccion-inicio h3 {
   color: #704b5a;
   letter-spacing: 5px;
   font-size: 24px;
   margin-bottom: 22px;
 }
-
 .botones-origen {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
 }
-
 .boton-origen {
   background: transparent;
   color: #704b5a;
@@ -90,25 +77,21 @@ h2 {
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
-
 .boton-origen:hover,
 .boton-origen.seleccionado {
   background: #704b5a;
   color: white;
 }
-
 .boton-origen:disabled {
   opacity: 0.65;
   cursor: default;
 }
-
 #mensajeOrigen {
   color: #704b5a;
   font-weight: bold;
   min-height: 22px;
   margin-top: 16px;
 }
-
 .bienvenida-audio {
   background: white;
   padding: 20px;
@@ -116,17 +99,14 @@ h2 {
   border-radius: 12px;
   text-align: center;
 }
-
 .bienvenida-audio audio {
   width: 100%;
   max-width: 450px;
 }
-
 .mapa {
   width: 100%;
   text-align: center;
 }
-
 .mapa img {
   width: 100%;
   max-width: 1000px;
@@ -136,7 +116,6 @@ h2 {
   border-radius: 12px;
   border: 2px solid #765563;
 }
-
 .card {
   background: white;
   padding: 20px;
@@ -146,7 +125,6 @@ h2 {
   align-items: center;
   gap: 20px;
 }
-
 .card img {
   width: 150px;
   height: 150px;
@@ -154,55 +132,45 @@ h2 {
   border-radius: 10px;
   border: 2px solid #765563;
 }
-
 .card-info {
   flex: 1;
 }
-
 .card-info h3 {
   color: #704b5a;
   margin-top: 0;
 }
-
 .audio-relato {
   background: white;
   padding: 15px 20px;
   margin: -5px 0 15px;
   border-radius: 10px;
 }
-
 .audio-relato audio {
   width: 100%;
   max-width: 400px;
 }
-
 .audio-relato.bloqueado {
   background: #e9e3e5;
   text-align: center;
 }
-
 .audio-relato.bloqueado audio {
   display: none;
 }
-
 .estado-audio {
   color: #704b5a;
   font-weight: bold;
 }
-
 footer {
   background: #593d48;
   color: white;
   text-align: center;
   padding: 20px;
 }
-
 @media (max-width: 600px) {
   .card {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .card img {
     width: 100%;
     height: auto;
@@ -210,24 +178,171 @@ footer {
     object-fit: contain;
   }
 }
+
+/* ===== DISEÑO MEJORADO DE LA PANTALLA DE INICIO ===== */
+#inicio {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 55px 24px 48px;
+  box-sizing: border-box;
+}
+#inicio > h2 {
+  text-align: center;
+  font-size: 32px;
+  margin: 0 auto 14px;
+}
+#inicio > p {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.75;
+  font-size: 16px;
+}
+.seleccion-inicio {
+  max-width: 790px;
+  margin: 36px auto 0;
+  padding: 36px 34px 28px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #e9dfe2;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(65, 43, 51, 0.07);
+  text-align: center;
+}
+.seleccion-inicio .etiqueta-inicio {
+  margin: 0 0 12px;
+  color: #9a7e88;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+.seleccion-inicio h3 {
+  margin: 0 0 12px;
+  color: #593d48;
+  font-size: 27px;
+  letter-spacing: 0;
+}
+.seleccion-inicio .descripcion-inicio {
+  max-width: 570px;
+  margin: 0 auto 27px;
+  color: #756970;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.botones-origen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.boton-origen {
+  display: grid;
+  grid-template-columns: 34px 1fr 18px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 82px;
+  padding: 16px 17px;
+  border: 1px solid #cbb8bf;
+  border-radius: 8px;
+  background: #fbf9f8;
+  color: #704b5a;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.boton-origen:hover {
+  border-color: #765563;
+  background: #f2eaed;
+  transform: translateY(-2px);
+}
+.boton-origen.seleccionado {
+  border-color: #765563;
+  background: #765563;
+  color: #fff;
+}
+.numero-origen {
+  color: #a58b95;
+  font-size: 19px;
+  font-weight: normal;
+}
+.boton-origen.seleccionado .numero-origen {
+  color: #fff;
+}
+.texto-origen {
+  line-height: 1.5;
+}
+.flecha-origen {
+  font-size: 19px;
+  text-align: right;
+}
+.boton-origen:disabled {
+  opacity: 0.75;
+  cursor: default;
+  transform: none;
+}
+#mensajeOrigen {
+  min-height: 22px;
+  margin: 22px 0 0;
+  color: #765563;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+.contenedor-comenzar {
+  margin: 22px auto 0;
+  text-align: center;
+}
+.boton-comenzar {
+  margin-top: 0;
+  padding: 15px 27px;
+  border-radius: 7px;
+  background: #593d48;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.boton-comenzar:hover {
+  background: #765563;
+}
+@media (max-width: 650px) {
+  #inicio {
+    padding: 38px 17px;
+  }
+  #inicio > h2 {
+    font-size: 27px;
+  }
+  .seleccion-inicio {
+    margin-top: 27px;
+    padding: 28px 18px 22px;
+  }
+  .seleccion-inicio h3 {
+    font-size: 23px;
+  }
+  .botones-origen {
+    grid-template-columns: 1fr;
+  }
+  .boton-origen {
+    min-height: 70px;
+  }
+}
 </style>
 </head>
-
 <body>
-
 <header>
   <h1>Mujeres de Memoria</h1>
   <h2 style="color:white">Voces del Cementerio General</h2>
   <p>Un recorrido autoguiado para conocer y recordar historias de mujeres.</p>
 </header>
-
 <nav>
   <a href="#inicio">Inicio</a>
   <a href="#recorrido">Recorrido</a>
   <a href="#historias">Historias</a>
   <a href="#visita">Recomendaciones</a>
 </nav>
-
 <section id="inicio">
   <h2>Bienvenidos</h2>
   <p>
@@ -235,62 +350,61 @@ footer {
     de Santiago, descubriendo las historias, aportes y memorias
     de mujeres que forman parte de nuestra historia.
   </p>
-
   <div class="seleccion-inicio">
-    <h3>INICIO</h3>
+    <p class="etiqueta-inicio">MUJERES DE MEMORIA · RECORRIDO AUTOGUIADO</p>
+    <h3>¿Dónde quieres comenzar?</h3>
+    <p class="descripcion-inicio">
+      Elige tu punto de partida para descubrir las historias que forman
+      parte de la memoria del Cementerio General.
+    </p>
     <div class="botones-origen">
       <button class="boton-origen" id="desdeMetro" type="button">
-        DESDE METRO CEMENTERIOS
+        <span class="numero-origen">01</span>
+        <span class="texto-origen">DESDE METRO CEMENTERIOS</span>
+        <span class="flecha-origen">→</span>
       </button>
       <button class="boton-origen" id="desdeAvLaPaz" type="button">
-        DESDE AV. LA PAZ
+        <span class="numero-origen">02</span>
+        <span class="texto-origen">DESDE AV. LA PAZ</span>
+        <span class="flecha-origen">→</span>
       </button>
     </div>
     <p id="mensajeOrigen" aria-live="polite">
       Selecciona dónde comenzarás tu recorrido.
     </p>
   </div>
-
-  <div style="text-align:center">
+  <div class="contenedor-comenzar">
     <button class="boton-comenzar" id="botonComenzar" hidden>
-      ▶ COMENZAR RECORRIDO
+      COMENZAR RECORRIDO <span aria-hidden="true">→</span>
     </button>
   </div>
-
   <div class="bienvenida-audio" id="bienvenidaAudio" hidden>
     <h3>🎧 Bienvenida y recomendaciones</h3>
     <p>Antes de comenzar, escucha las recomendaciones para realizar el recorrido.</p>
-
     <audio id="audioBienvenida" controls preload="metadata">
       <source
         src="./WhatsApp%20Audio%202026-11-23%20at%2013.00.30.mp4"
         type="audio/mp4">
       Tu navegador no admite la reproducción de audio.
     </audio>
-
     <p id="mensajeBienvenida">
       Cuando termine este audio, se desbloqueará el primer hito.
     </p>
   </div>
 </section>
-
 <section id="recorrido">
   <h2>Mapa del recorrido</h2>
   <p>Explora el mapa del Cementerio General.</p>
-
   <div class="mapa">
     <img
       src="https://raw.githubusercontent.com/antchaveza-coder/Mujeres-de-memoria-/main/Mapa%20cementerio.png"
       alt="Mapa original del recorrido Mujeres de Memoria">
   </div>
 </section>
-
 <section id="historias" hidden>
   <h2>Historias del recorrido</h2>
   <p>Escucha cada historia para desbloquear el siguiente punto.</p>
-
   <!-- 1. CARMELA CARVAJAL -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04.jpeg"
          alt="Fotografía de Carmela Carvajal de Prat">
@@ -299,16 +413,13 @@ footer {
       <p>Patio 60</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 2. REBECA MATTE -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(1).jpeg"
          alt="Fotografía de Rebeca Matte">
@@ -317,16 +428,13 @@ footer {
       <p>Patio 68</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 3. MARCELA PAZ -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(2).jpeg"
          alt="Fotografía de Marcela Paz">
@@ -335,16 +443,13 @@ footer {
       <p>Patio 56</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 4. IRENE MORALES -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.04%20(3).jpeg"
          alt="Fotografía de Irene Morales">
@@ -353,16 +458,13 @@ footer {
       <p>Patio 27</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 5. ELOÍSA DÍAZ -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05.jpeg"
          alt="Fotografía de Eloísa Díaz">
@@ -371,16 +473,13 @@ footer {
       <p>Patio 12</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 6. VETERANOS DE LA GUERRA DEL 79 -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(1).jpeg"
          alt="Veteranos de la Guerra del 79">
@@ -389,16 +488,13 @@ footer {
       <p>Patio 9</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 7. ISIDORA ZEGERS -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(2).jpeg"
          alt="Fotografía de Isidora Zegers">
@@ -407,16 +503,13 @@ footer {
       <p>Patio 3</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 8. PAULA JARAQUEMADA -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(3).jpeg"
          alt="Fotografía de Paula Jaraquemada">
@@ -425,16 +518,13 @@ footer {
       <p>Patio 7</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <!-- 9. MONUMENTO PLAZA DE LA PAZ -->
-
   <div class="card">
     <img src="./WhatsApp%20Image%202026-11-23%20at%2011.37.05%20(4).jpeg"
          alt="Monumento de la Plaza de La Paz">
@@ -443,19 +533,16 @@ footer {
       <p>Plaza de La Paz</p>
     </div>
   </div>
-
   <div class="audio-relato bloqueado">
     <p class="estado-audio">🔒 Audio bloqueado</p>
     <audio class="audio-hito" controls preload="none">
       <source src="./Isidora%20zegers" type="audio/mp4">
     </audio>
   </div>
-
   <p id="mensajeFinal" hidden>
     ❤️ ¡Felicitaciones! Has completado el recorrido Mujeres de Memoria.
   </p>
 </section>
-
 <section id="visita">
   <h2>Recomendaciones para visitantes</h2>
   <div class="card">
@@ -468,141 +555,103 @@ footer {
     </ul>
   </div>
 </section>
-
 <footer>
   <p>Mujeres de Memoria | Cementerio General de Santiago</p>
   <p>Un recorrido por la historia y la memoria.</p>
 </footer>
-
 <script>
 const botonComenzar = document.getElementById("botonComenzar");
 const bienvenidaAudio = document.getElementById("bienvenidaAudio");
 const audioBienvenida = document.getElementById("audioBienvenida");
 const historias = document.getElementById("historias");
 const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-
 const botonDesdeMetro = document.getElementById("desdeMetro");
 const botonDesdeAvLaPaz = document.getElementById("desdeAvLaPaz");
 const mensajeOrigen = document.getElementById("mensajeOrigen");
-
 const tarjetasOriginales = Array.from(
   historias.querySelectorAll(":scope > .card")
 );
-
 const bloquesOriginales = Array.from(
   historias.querySelectorAll(":scope > .audio-relato")
 );
-
 const mensajeFinal = document.getElementById("mensajeFinal");
-
 let direccionSeleccionada = null;
 let recorridoIniciado = false;
 let bloques = [];
 let audios = [];
 let indiceHitoActual = 0;
-
 function organizarHitos(direccion) {
   const indices = tarjetasOriginales.map((_, indice) => indice);
-
   if (direccion === "av-la-paz") {
     indices.reverse();
   }
-
   const fragmento = document.createDocumentFragment();
-
   indices.forEach((indiceOriginal, posicion) => {
     const tarjeta = tarjetasOriginales[indiceOriginal];
     const bloqueAudio = bloquesOriginales[indiceOriginal];
     const titulo = tarjeta.querySelector("h3");
-
     if (!titulo.dataset.tituloOriginal) {
       titulo.dataset.tituloOriginal = titulo.textContent.replace(/^\d+\.\s*/, "");
     }
-
     titulo.textContent = `${posicion + 1}. ${titulo.dataset.tituloOriginal}`;
-
     // Cada tarjeta se mueve junto a su propio audio.
     fragmento.appendChild(tarjeta);
     fragmento.appendChild(bloqueAudio);
   });
-
   historias.insertBefore(fragmento, mensajeFinal);
-
   bloques = indices.map(indice => bloquesOriginales[indice]);
   audios = bloques.map(bloque => bloque.querySelector(".audio-hito"));
-
   indiceHitoActual = 0;
 }
-
 function seleccionarOrigen(direccion) {
   if (recorridoIniciado) return;
-
   direccionSeleccionada = direccion;
   organizarHitos(direccion);
-
   botonDesdeMetro.classList.toggle(
     "seleccionado",
     direccion === "metro"
   );
-
   botonDesdeAvLaPaz.classList.toggle(
     "seleccionado",
     direccion === "av-la-paz"
   );
-
   mensajeOrigen.textContent = direccion === "metro"
     ? "Inicio seleccionado: Metro Cementerios. Los hitos seguirán el orden actual."
     : "Inicio seleccionado: Av. La Paz. Los hitos aparecerán en orden inverso.";
-
   botonComenzar.hidden = false;
 }
-
 botonDesdeMetro.addEventListener("click", () => {
   seleccionarOrigen("metro");
 });
-
 botonDesdeAvLaPaz.addEventListener("click", () => {
   seleccionarOrigen("av-la-paz");
 });
-
 function desbloquearHito(indice) {
   const bloque = bloques[indice];
-
   if (!bloque) return;
-
   bloque.classList.remove("bloqueado");
-
   const mensaje = bloque.querySelector(".estado-audio");
   const audio = bloque.querySelector(".audio-hito");
-
   if (mensaje) {
     mensaje.textContent = "🎧 Escucha la historia";
   }
-
   if (audio) {
     audio.controls = true;
     audio.preload = "metadata";
   }
-
   indiceHitoActual = indice;
-
   bloque.scrollIntoView({
     behavior: "smooth",
     block: "center"
   });
 }
-
 botonComenzar.addEventListener("click", async () => {
   if (!direccionSeleccionada || recorridoIniciado) return;
-
   recorridoIniciado = true;
   botonComenzar.hidden = true;
-
   botonDesdeMetro.disabled = true;
   botonDesdeAvLaPaz.disabled = true;
-
   bienvenidaAudio.hidden = false;
-
   try {
     await audioBienvenida.play();
   } catch (error) {
@@ -610,33 +659,24 @@ botonComenzar.addEventListener("click", async () => {
       "Presiona reproducir para escuchar la bienvenida.";
   }
 });
-
 audioBienvenida.addEventListener("ended", () => {
   historias.hidden = false;
-
   mensajeBienvenida.textContent =
     "¡Bienvenida escuchada! Ya puedes comenzar el recorrido.";
-
   desbloquearHito(0);
 });
-
 bloquesOriginales.forEach((bloque) => {
   const audio = bloque.querySelector(".audio-hito");
-
   audio.addEventListener("ended", () => {
     const indice = audios.indexOf(audio);
-
     if (indice !== indiceHitoActual) return;
-
     const siguiente = indice + 1;
-
     if (siguiente < audios.length) {
       desbloquearHito(siguiente);
     } else {
       mensajeFinal.hidden = false;
       mensajeFinal.textContent =
         "❤️ ¡Felicitaciones! Has completado el recorrido Mujeres de Memoria.";
-
       mensajeFinal.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -645,6 +685,5 @@ bloquesOriginales.forEach((bloque) => {
   });
 });
 </script>
-
 </body>
 </html>
