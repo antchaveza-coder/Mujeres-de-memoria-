@@ -20,7 +20,7 @@ header {
   padding: 40px 15px;
 }
 
-/* Menú superior */
+/* Barra superior discreta: solo muestra el botón de menú */
 .barra-menu {
   height: 58px;
   background: #f5f1ed;
@@ -86,74 +86,6 @@ section {
 
 h2 {
   color: #704b5a;
-}
-
-.boton-comenzar {
-  background: #704b5a;
-  color: white;
-  border: none;
-  padding: 16px 30px;
-  border-radius: 10px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-.boton-comenzar:hover {
-  background: #593d48;
-}
-
-.seleccion-inicio {
-  text-align: center;
-  margin: 25px auto 10px;
-  max-width: 760px;
-}
-
-.seleccion-inicio h3 {
-  color: #704b5a;
-  letter-spacing: 5px;
-  font-size: 24px;
-  margin-bottom: 22px;
-}
-
-.botones-origen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.boton-origen {
-  background: transparent;
-  color: #704b5a;
-  border: 0;
-  border-bottom: 1px solid #704b5a;
-  padding: 14px 12px;
-  width: min(100%, 520px);
-  font-size: 17px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.boton-origen:hover,
-.boton-origen.seleccionado {
-  background: #704b5a;
-  color: white;
-}
-
-.boton-origen:disabled {
-  opacity: 0.65;
-  cursor: default;
-}
-
-#mensajeOrigen {
-  color: #704b5a;
-  font-weight: bold;
-  min-height: 22px;
-  margin-top: 16px;
 }
 
 .bienvenida-audio {
@@ -275,14 +207,14 @@ footer {
   </div>
 </div>
 
-<!-- TÍTULO -->
+<!-- TÍTULO PRINCIPAL -->
 <header>
   <h1>Mujeres de Memoria</h1>
   <h2 style="color:white">Voces del Cementerio General</h2>
   <p>Un recorrido autoguiado para conocer y recordar historias de mujeres.</p>
 </header>
 
-<!-- INICIO -->
+<!-- BIENVENIDA -->
 <section id="inicio">
   <h2>Bienvenidos</h2>
 
@@ -291,30 +223,6 @@ footer {
     de Santiago, descubriendo las historias, aportes y memorias
     de mujeres que forman parte de nuestra historia.
   </p>
-
-  <div class="seleccion-inicio">
-    <h3>INICIO</h3>
-
-    <div class="botones-origen">
-      <button class="boton-origen" id="desdeMetro" type="button">
-        DESDE METRO CEMENTERIOS
-      </button>
-
-      <button class="boton-origen" id="desdeAvLaPaz" type="button">
-        DESDE AV. LA PAZ
-      </button>
-    </div>
-
-    <p id="mensajeOrigen" aria-live="polite">
-      Selecciona dónde comenzarás tu recorrido.
-    </p>
-  </div>
-
-  <div style="text-align:center">
-    <button class="boton-comenzar" id="botonComenzar" hidden>
-      ▶ COMENZAR RECORRIDO
-    </button>
-  </div>
 
   <!-- AUDIO DE BIENVENIDA -->
   <div class="bienvenida-audio" id="bienvenidaAudio" hidden>
@@ -337,7 +245,7 @@ footer {
   </div>
 </section>
 
-<!-- MAPA -->
+<!-- MAPA DEL RECORRIDO -->
 <section id="recorrido">
   <h2>Mapa del recorrido</h2>
   <p>Explora el mapa del Cementerio General.</p>
@@ -543,15 +451,10 @@ footer {
 </footer>
 
 <script>
-const botonComenzar = document.getElementById("botonComenzar");
 const bienvenidaAudio = document.getElementById("bienvenidaAudio");
 const audioBienvenida = document.getElementById("audioBienvenida");
 const historias = document.getElementById("historias");
 const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-
-const botonDesdeMetro = document.getElementById("desdeMetro");
-const botonDesdeAvLaPaz = document.getElementById("desdeAvLaPaz");
-const mensajeOrigen = document.getElementById("mensajeOrigen");
 
 // MENÚ DESPLEGABLE
 const botonMenu = document.getElementById("botonMenu");
@@ -585,7 +488,7 @@ document.addEventListener("keydown", (evento) => {
   }
 });
 
-// OPCIONES DEL MENÚ
+// OPCIÓN INICIO
 document.getElementById("menuInicio").addEventListener("click", () => {
   cerrarMenu();
 
@@ -594,6 +497,7 @@ document.getElementById("menuInicio").addEventListener("click", () => {
   });
 });
 
+// OPCIÓN DESDE METRO CEMENTERIOS
 document.getElementById("menuMetro").addEventListener("click", () => {
   seleccionarOrigen("metro");
   cerrarMenu();
@@ -603,6 +507,7 @@ document.getElementById("menuMetro").addEventListener("click", () => {
   });
 });
 
+// OPCIÓN DESDE AV. LA PAZ
 document.getElementById("menuAvLaPaz").addEventListener("click", () => {
   seleccionarOrigen("av-la-paz");
   cerrarMenu();
@@ -652,7 +557,7 @@ function organizarHitos(direccion) {
     titulo.textContent =
       `${posicion + 1}. ${titulo.dataset.tituloOriginal}`;
 
-    // La tarjeta se mueve junto a su propio audio.
+    // Cada tarjeta se mueve junto a su propio audio.
     fragmento.appendChild(tarjeta);
     fragmento.appendChild(bloqueAudio);
   });
@@ -676,30 +581,12 @@ function seleccionarOrigen(direccion) {
 
   organizarHitos(direccion);
 
-  botonDesdeMetro.classList.toggle(
-    "seleccionado",
-    direccion === "metro"
-  );
+  bienvenidaAudio.hidden = false;
 
-  botonDesdeAvLaPaz.classList.toggle(
-    "seleccionado",
-    direccion === "av-la-paz"
-  );
-
-  mensajeOrigen.textContent = direccion === "metro"
-    ? "Inicio seleccionado: Metro Cementerios. Los hitos seguirán el orden actual."
-    : "Inicio seleccionado: Av. La Paz. Los hitos aparecerán en orden inverso.";
-
-  botonComenzar.hidden = false;
+  mensajeBienvenida.textContent = direccion === "metro"
+    ? "Punto de partida: Metro Cementerios. Escucha la bienvenida para comenzar."
+    : "Punto de partida: Av. La Paz. Escucha la bienvenida para comenzar.";
 }
-
-botonDesdeMetro.addEventListener("click", () => {
-  seleccionarOrigen("metro");
-});
-
-botonDesdeAvLaPaz.addEventListener("click", () => {
-  seleccionarOrigen("av-la-paz");
-});
 
 // DESBLOQUEAR EL AUDIO DEL HITO CORRESPONDIENTE
 function desbloquearHito(indice) {
@@ -729,25 +616,9 @@ function desbloquearHito(indice) {
   });
 }
 
-// COMENZAR RECORRIDO
-botonComenzar.addEventListener("click", async () => {
-  if (!direccionSeleccionada || recorridoIniciado) return;
-
+// CUANDO SE REPRODUCE LA BIENVENIDA
+audioBienvenida.addEventListener("play", () => {
   recorridoIniciado = true;
-
-  botonComenzar.hidden = true;
-
-  botonDesdeMetro.disabled = true;
-  botonDesdeAvLaPaz.disabled = true;
-
-  bienvenidaAudio.hidden = false;
-
-  try {
-    await audioBienvenida.play();
-  } catch (error) {
-    mensajeBienvenida.textContent =
-      "Presiona reproducir para escuchar la bienvenida.";
-  }
 });
 
 // CUANDO TERMINA LA BIENVENIDA SE DESBLOQUEA EL PRIMER HITO
