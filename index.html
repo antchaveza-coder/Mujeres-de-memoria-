@@ -57,6 +57,58 @@ h2 {
   background: #593d48;
 }
 
+.seleccion-inicio {
+  text-align: center;
+  margin: 25px auto 10px;
+  max-width: 760px;
+}
+
+.seleccion-inicio h3 {
+  color: #704b5a;
+  letter-spacing: 5px;
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+
+.botones-origen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.boton-origen {
+  background: transparent;
+  color: #704b5a;
+  border: 0;
+  border-bottom: 1px solid #704b5a;
+  padding: 14px 12px;
+  width: min(100%, 520px);
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.boton-origen:hover,
+.boton-origen.seleccionado {
+  background: #704b5a;
+  color: white;
+}
+
+.boton-origen:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+#mensajeOrigen {
+  color: #704b5a;
+  font-weight: bold;
+  min-height: 22px;
+  margin-top: 16px;
+}
+
 .bienvenida-audio {
   background: white;
   padding: 20px;
@@ -184,8 +236,23 @@ footer {
     de mujeres que forman parte de nuestra historia.
   </p>
 
+  <div class="seleccion-inicio">
+    <h3>INICIO</h3>
+    <div class="botones-origen">
+      <button class="boton-origen" id="desdeMetro" type="button">
+        DESDE METRO CEMENTERIOS
+      </button>
+      <button class="boton-origen" id="desdeAvLaPaz" type="button">
+        DESDE AV. LA PAZ
+      </button>
+    </div>
+    <p id="mensajeOrigen" aria-live="polite">
+      Selecciona dónde comenzarás tu recorrido.
+    </p>
+  </div>
+
   <div style="text-align:center">
-    <button class="boton-comenzar" id="botonComenzar">
+    <button class="boton-comenzar" id="botonComenzar" hidden>
       ▶ COMENZAR RECORRIDO
     </button>
   </div>
@@ -414,13 +481,89 @@ const audioBienvenida = document.getElementById("audioBienvenida");
 const historias = document.getElementById("historias");
 const mensajeBienvenida = document.getElementById("mensajeBienvenida");
 
-const bloques = Array.from(
-  document.querySelectorAll(".audio-relato")
+const botonDesdeMetro = document.getElementById("desdeMetro");
+const botonDesdeAvLaPaz = document.getElementById("desdeAvLaPaz");
+const mensajeOrigen = document.getElementById("mensajeOrigen");
+
+const tarjetasOriginales = Array.from(
+  historias.querySelectorAll(":scope > .card")
 );
 
-const audios = Array.from(
-  document.querySelectorAll(".audio-hito")
+const bloquesOriginales = Array.from(
+  historias.querySelectorAll(":scope > .audio-relato")
 );
+
+const mensajeFinal = document.getElementById("mensajeFinal");
+
+let direccionSeleccionada = null;
+let recorridoIniciado = false;
+let bloques = [];
+let audios = [];
+let indiceHitoActual = 0;
+
+function organizarHitos(direccion) {
+  const indices = tarjetasOriginales.map((_, indice) => indice);
+
+  if (direccion === "av-la-paz") {
+    indices.reverse();
+  }
+
+  const fragmento = document.createDocumentFragment();
+
+  indices.forEach((indiceOriginal, posicion) => {
+    const tarjeta = tarjetasOriginales[indiceOriginal];
+    const bloqueAudio = bloquesOriginales[indiceOriginal];
+    const titulo = tarjeta.querySelector("h3");
+
+    if (!titulo.dataset.tituloOriginal) {
+      titulo.dataset.tituloOriginal = titulo.textContent.replace(/^\d+\.\s*/, "");
+    }
+
+    titulo.textContent = `${posicion + 1}. ${titulo.dataset.tituloOriginal}`;
+
+    // Cada tarjeta se mueve junto a su propio audio.
+    fragmento.appendChild(tarjeta);
+    fragmento.appendChild(bloqueAudio);
+  });
+
+  historias.insertBefore(fragmento, mensajeFinal);
+
+  bloques = indices.map(indice => bloquesOriginales[indice]);
+  audios = bloques.map(bloque => bloque.querySelector(".audio-hito"));
+
+  indiceHitoActual = 0;
+}
+
+function seleccionarOrigen(direccion) {
+  if (recorridoIniciado) return;
+
+  direccionSeleccionada = direccion;
+  organizarHitos(direccion);
+
+  botonDesdeMetro.classList.toggle(
+    "seleccionado",
+    direccion === "metro"
+  );
+
+  botonDesdeAvLaPaz.classList.toggle(
+    "seleccionado",
+    direccion === "av-la-paz"
+  );
+
+  mensajeOrigen.textContent = direccion === "metro"
+    ? "Inicio seleccionado: Metro Cementerios. Los hitos seguirán el orden actual."
+    : "Inicio seleccionado: Av. La Paz. Los hitos aparecerán en orden inverso.";
+
+  botonComenzar.hidden = false;
+}
+
+botonDesdeMetro.addEventListener("click", () => {
+  seleccionarOrigen("metro");
+});
+
+botonDesdeAvLaPaz.addEventListener("click", () => {
+  seleccionarOrigen("av-la-paz");
+});
 
 function desbloquearHito(indice) {
   const bloque = bloques[indice];
@@ -430,11 +573,18 @@ function desbloquearHito(indice) {
   bloque.classList.remove("bloqueado");
 
   const mensaje = bloque.querySelector(".estado-audio");
-  const audio = audios[indice];
+  const audio = bloque.querySelector(".audio-hito");
 
-  mensaje.textContent = "🎧 Escucha la historia";
-  audio.controls = true;
-  audio.preload = "metadata";
+  if (mensaje) {
+    mensaje.textContent = "🎧 Escucha la historia";
+  }
+
+  if (audio) {
+    audio.controls = true;
+    audio.preload = "metadata";
+  }
+
+  indiceHitoActual = indice;
 
   bloque.scrollIntoView({
     behavior: "smooth",
@@ -443,7 +593,14 @@ function desbloquearHito(indice) {
 }
 
 botonComenzar.addEventListener("click", async () => {
+  if (!direccionSeleccionada || recorridoIniciado) return;
+
+  recorridoIniciado = true;
   botonComenzar.hidden = true;
+
+  botonDesdeMetro.disabled = true;
+  botonDesdeAvLaPaz.disabled = true;
+
   bienvenidaAudio.hidden = false;
 
   try {
@@ -454,26 +611,33 @@ botonComenzar.addEventListener("click", async () => {
   }
 });
 
-// Solo al terminar completamente la bienvenida
-// se desbloquea el primer hito.
 audioBienvenida.addEventListener("ended", () => {
   historias.hidden = false;
+
   mensajeBienvenida.textContent =
     "¡Bienvenida escuchada! Ya puedes comenzar el recorrido.";
 
   desbloquearHito(0);
 });
 
-// Cada audio terminado desbloquea el siguiente.
-audios.forEach((audio, indice) => {
+bloquesOriginales.forEach((bloque) => {
+  const audio = bloque.querySelector(".audio-hito");
+
   audio.addEventListener("ended", () => {
+    const indice = audios.indexOf(audio);
+
+    if (indice !== indiceHitoActual) return;
+
     const siguiente = indice + 1;
 
     if (siguiente < audios.length) {
       desbloquearHito(siguiente);
     } else {
-      document.getElementById("mensajeFinal").hidden = false;
-      document.getElementById("mensajeFinal").scrollIntoView({
+      mensajeFinal.hidden = false;
+      mensajeFinal.textContent =
+        "❤️ ¡Felicitaciones! Has completado el recorrido Mujeres de Memoria.";
+
+      mensajeFinal.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
